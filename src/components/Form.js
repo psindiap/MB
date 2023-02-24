@@ -12,6 +12,7 @@ import {
   RangeSliderFilledTrack,
   RangeSliderThumb,
 } from '@chakra-ui/react'
+import { NavLink } from 'react-router-dom';
 
 
 export default function Form() {
@@ -33,15 +34,15 @@ export default function Form() {
   return (
     <div className="flex w-full  justify-center items-center">
 
-      <div className="flex flex-col-reverse md:flex-row items-center justify-center register md:h-screen60">
-        <div className="flex flex-col w-1/2 p-4">
-          <h2>Customize:</h2>
-          <span>Set the parameters as per your needs-</span>
+      <div className="flex flex-col-reverse md:flex-row items-center justify-center register md:h-screen70">
+        <div className="flex flex-col w-1/2 p-12 px-20">
+          <h2 className='font-semibold text-xl mt-8'>Generate design:</h2>
+          <span >Set desired Parameters-</span>
 
-          <div className="w-5/6  mx-auto mt-4">
+          <div className="w-full mx-auto mt-12">
 
             <div>
-              Deflection: {start} - {end} mm
+              Deflection: <span className='block'><span className=' w-16 text-black'>{-60+start*(-60)/100}</span> to <span className=' w-16 text-black'>{-60+end*(-60)/100} </span> mm </span>
             </div>
 
             <div>
@@ -67,7 +68,7 @@ export default function Form() {
             </div>
           </div>
 
-          <div className="w-5/6  mx-auto mt-4">
+          <div className="w-full  mx-auto mt-4">
 
             <div>
               Width: {start2} - {end2} mm
@@ -96,10 +97,10 @@ export default function Form() {
             </div>
           </div>
 
-          <div className="w-5/6  mx-auto mt-4">
+          <div className="w-full  mx-auto mt-4">
 
             <div>
-              Length: {900+start3*(11-9)} - {900+end3*(1100-900)} mm
+              Length: {900+start3*(11-9)} - {900+end3*(11-9)} mm
             </div>
 
             <div>
@@ -126,7 +127,7 @@ export default function Form() {
           </div>
 
 
-          <div className="w-5/6  mx-auto mt-4">
+          <div className="w-full  mx-auto mt-4">
 
             <div>
               Depth: {start4} - {end4} mm
@@ -156,8 +157,8 @@ export default function Form() {
           </div>
 
 
-          <button class="mx-auto w-fit block bg-blue-500 hover:bg-blue-400 text-white font-bold mt-8 py-2 px-8 border-b-4 border-blue-700 hover:border-blue-500 rounded ">
-            Generate
+          <button class="my-8 mx-auto w-fit block bg-blue-500 hover:bg-blue-400 text-white font-bold mt-8 py-2 px-8 border-b-4 border-blue-700 hover:border-blue-500 rounded ">
+            <NavLink to='/form2'>Generate</NavLink>
           </button>
 
         </div>

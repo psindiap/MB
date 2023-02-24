@@ -25,7 +25,7 @@ export default function Form2() {
             <div className="flex mx-auto flex-col md:flex-row w-10/12 items-center justify-center register2 h-screen70 rounded-lg">
                 <div className="flex flex-col w-1/4 p-4  ">
                     <h2 className='font-semibold text-xl'>Sort</h2>
-                    <span style={{ color: "black" }}>Priority based Sort: Ascending order-</span>
+                    <span >Priority based Sort: Ascending order-</span>
 
 
                     <div className="flex flex-col md:flex-row w-full mt-6">
