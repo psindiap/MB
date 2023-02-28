@@ -1,6 +1,8 @@
 import './App.css';
 import Form from './components/Form';
 import Form2 from './components/Form2';
+import Formn from './components/Formn';
+
 import Form3 from './components/Form3';
 
 import {
@@ -16,7 +18,7 @@ const router = createBrowserRouter([
     element: <Form/>,
   }, {
     path: "/form2",
-    element: <Form2/>,
+    element: <Formn/>,
   },
   {
     path: "/form3",

@@ -1,183 +1,145 @@
-import React from 'react'
+import React from "react";
 // import bgImg from '../assets/img1.jpg';
-import bgImg from '../assets/MB2.jpg';
-import mbImg from '../assets/mb1.png';
-import dm1 from '../Srcs/Imgs (1).png';
-import dm2 from '../Srcs/Imgs (2).png';
-import dm3 from '../Srcs/Imgs (3).png';
-import dm4 from '../Srcs/Imgs (4).png';
-import dm5 from '../Srcs/Imgs (5).png';
-import dm6 from '../Srcs/Imgs (6).png';
+import bgImg from "../assets/MB2.jpg";
+import mbImg from "../assets/mb1.png";
+import { useForm } from "react-hook-form";
+import Row from "./row";
 
 
 
 
+const images = {};
+function importAll(r) {
+  r.keys().forEach((key) => (images[key] = r(key)));
+}
+importAll(require.context('../Srcs', false, /\.(png|jpe?g|svg)$/));
 
 
-import { useForm } from 'react-hook-form';
+function sortObj(obj) {
+    // Convert object keys to array
+    const keys = Object.keys(obj);
+  
+    // Sort the keys
+    keys.sort();
+  
+    // Shuffle the keys
+    for (let i = keys.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [keys[i], keys[j]] = [keys[j], keys[i]];
+    }
+  
+    // Create a new object with shuffled keys
+    const shuffledObj = {};
+    keys.forEach((key) => {
+      shuffledObj[key] = obj[key];
+    });
+  
+    return shuffledObj;
+}
+
+
 
 
 export default function Form3() {
+  const [start, setStart] = React.useState(0);
+  const [end, setEnd] = React.useState(100);
+  const [Images, setImages] = React.useState(images);
 
-    const [start, setStart] = React.useState(0);
-    const [end, setEnd] = React.useState(100);
+  function handleClick() {
+    setImages(sortObj(Images));
+  }
 
+  
+// console.log(sortObj(images));
+const [isSelected, setIsSelected] = React.useState(true);
 
-    return (
+  const handleRadioClick = () => {
+    setIsSelected(!isSelected);
+  };
+  return (
 
-        <div className="flex mx-auto flex-col  w-11/12 items-center justify-center register2 h-screen90 rounded-lg">
-            <div className="flex flex-col w-full p-4  ">
-                <h2 className='font-semibold text-xl'>Sort</h2>
-                <span >Priority based Sort: Ascending order-</span>
+    
+    <div className="flex mx-auto flex-row  w-11/12 items-center justify-center register2 h-screen90 rounded-lg">
+      <div className="flex flex-col w-5/12 p-4">
+        <h2 className="font-semibold text-xl">Sort</h2>
+        <span className="mb-10">Priority based Sort: Ascending order-</span>
 
+        <div class="mt-4 mb-4 flex items-center mx-auto">
+          <input
+            id="link-radio"
+            type="radio"
+            checked={isSelected}
+            onClick={handleRadioClick}
+            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
 
-                <div className="mx-auto flex flex-row items-center justify-center md:flex-row w-9/12 mt-6">
-
-                    <div className='mx-auto w-1/2 p-2'>
-                        <label for="countries" class="block mb-2 text-sm font-semibold text-lg text-gray-900 dark:text-white">Priority 1:</label>
-                        <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            <option selected>Choose a parameter</option>
-                            <option value="US">Deflection</option>
-                            <option value="CA">Weight</option>
-                            <option value="FR">Thickness</option>
-                            <option value="DE">Depth</option>
-                        </select>
-                    </div>
-
-
-                    <div className='mx-auto w-1/2 p-2'>
-                        <label for="countries" class="block mb-2 text-sm font-semibold text-lg text-gray-900 dark:text-white">Priority 2:</label>
-                        <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            <option selected>Choose another parameter</option>
-                            <option value="US">Deflection</option>
-                            <option value="CA">Weight</option>
-                            <option value="FR">Thickness</option>
-                            <option value="DE">Depth</option>
-                        </select>
-                    </div>
-
-                </div>
-
-                <button class="mx-auto w-fit block bg-blue-500 hover:bg-blue-400 text-white font-bold mt-8 py-2 px-8 border-b-4 border-blue-700 hover:border-blue-500 rounded ">
-                    Sort
-                </button>
-
-            </div>
-
-            <div className='grid md:grid-cols-4 md:gap-4 overflow-auto items-center justify-center  ' >
-
-
-                <div className='shadow-xl rounded-xl flex flex-col border-solid border-4 p-4 mx-4 mt-2 mb-4 w-9/12 md:w-initial md:w-11/12 hover:border-blue-500 hover:cursor-pointer'>
-                    <img className="object-fill" src={dm1} alt="img1.jpg" />
-                    <div className="flex flex-col w-full p-4 items- center justify-center">
-                        <h2 className='font-semibold text-lg'>Design 1</h2>
-                        <h2 className='font text-sm'>Deflection: _ mm </h2>
-                        <h2 className='font text-sm'>Thickness: _ mm</h2>
-                        <h2 className='font text-sm'>Length:  _ mm </h2>
-                        <h2 className='font text-sm'>Width:  _ mm</h2>
-                    </div>
-
-                </div>
-
-                <div className='shadow-xl rounded-xl flex flex-col border-solid border-4 p-4 mx-4 mt-2 mb-4 w-9/12 md:w-initial md:w-11/12 hover:border-blue-500 hover:cursor-pointer'>
-                    <img className="object-fill" src={dm2} alt="img2.jpg" />
-                    <div className="flex flex-col w-full p-4 items- center justify-center">
-                        <h2 className='font-semibold text-lg'>Design 2</h2>
-                        <h2 className='font text-sm'>Deflection: _ mm </h2>
-                        <h2 className='font text-sm'>Thickness: _ mm</h2>
-                        <h2 className='font text-sm'>Length:  _ mm </h2>
-                        <h2 className='font text-sm'>Width:  _ mm</h2>
-                    </div>
-
-                </div>
-
-
-                <div className='shadow-xl rounded-xl flex flex-col border-solid border-4 p-4 mx-4 mt-2 mb-4 w-9/12 md:w-initial md:w-11/12 hover:border-blue-500 hover:cursor-pointer'>
-                    <img className="object-fill" src={dm3} alt="img3.jpg" />
-                    <div className="flex flex-col w-full p-4 items- center justify-center">
-                        <h2 className='font-semibold text-lg'>Design 3</h2>
-                        <h2 className='font text-sm'>Deflection: _ mm </h2>
-                        <h2 className='font text-sm'>Thickness: _ mm</h2>
-                        <h2 className='font text-sm'>Length:  _ mm </h2>
-                        <h2 className='font text-sm'>Width:  _ mm</h2>
-                    </div>
-
-                </div>
-
-
-                <div className='shadow-xl rounded-xl flex flex-col border-solid border-4 p-4 mx-4 mt-2 mb-4 w-9/12 md:w-initial md:w-11/12 hover:border-blue-500 hover:cursor-pointer'>
-                    <img className="object-fill" src={dm4} alt="img4.jpg" />
-                    <div className="flex flex-col w-full p-4 items- center justify-center">
-                        <h2 className='font-semibold text-lg'>Design 4</h2>
-                        <h2 className='font text-sm'>Deflection: _ mm </h2>
-                        <h2 className='font text-sm'>Thickness: _ mm</h2>
-                        <h2 className='font text-sm'>Length:  _ mm </h2>
-                        <h2 className='font text-sm'>Width:  _ mm</h2>
-                    </div>
-
-                </div>
-
-
-
-                <div className='shadow-xl rounded-xl flex flex-col border-solid border-4 p-4 mx-4 mt-2 mb-4 w-9/12 md:w-initial md:w-11/12 hover:border-blue-500 hover:cursor-pointer'>
-                    <img className="object-fill" src={dm5} alt="img5.jpg" />
-                    <div className="flex flex-col w-full p-4 items- center justify-center">
-                        <h2 className='font-semibold text-lg'>Design 5</h2>
-                        <h2 className='font text-sm'>Deflection: _ mm </h2>
-                        <h2 className='font text-sm'>Thickness: _ mm</h2>
-                        <h2 className='font text-sm'>Length:  _ mm </h2>
-                        <h2 className='font text-sm'>Width:  _ mm</h2>
-                    </div>
-
-                </div>
-
-                <div className='shadow-xl rounded-xl flex flex-col border-solid border-4 p-4 mx-4 mt-2 mb-4 w-9/12 md:w-initial md:w-11/12 hover:border-blue-500 hover:cursor-pointer'>
-                    <img className="object-fill" src={dm6} alt="img6.jpg" />
-                    <div className="flex flex-col w-full p-4 items- center justify-center">
-                        <h2 className='font-semibold text-lg'>Design 4</h2>
-                        <h2 className='font text-sm'>Deflection: _ mm </h2>
-                        <h2 className='font text-sm'>Thickness: _ mm</h2>
-                        <h2 className='font text-sm'>Length:  _ mm </h2>
-                        <h2 className='font text-sm'>Width:  _ mm</h2>
-                    </div>
-
-                </div>
-
-
-                <div className='shadow-xl rounded-xl flex flex-col border-solid border-4 p-4 mx-4 mt-2 mb-4 w-9/12 md:w-initial md:w-11/12 hover:border-blue-500 hover:cursor-pointer'>
-                    <img className="object-fill" src={dm4} alt="img7.jpg" />
-                    <div className="flex flex-col w-full p-4 items- center justify-center">
-                        <h2 className='font-semibold text-lg'>Design 7</h2>
-                        <h2 className='font text-sm'>Deflection: _ mm </h2>
-                        <h2 className='font text-sm'>Thickness: _ mm</h2>
-                        <h2 className='font text-sm'>Length:  _ mm </h2>
-                        <h2 className='font text-sm'>Width:  _ mm</h2>
-                    </div>
-
-                </div>
-
-
-                <div className='shadow-xl rounded-xl flex flex-col border-solid border-4 p-4 mx-4 mt-2 mb-4 w-9/12 md:w-initial md:w-11/12 hover:border-blue-500 hover:cursor-pointer'>
-                    <img className="object-fill" src={dm2} alt="img8.jpg" />
-                    <div className="flex flex-col w-full p-4 items- center justify-center">
-                        <h2 className='font-semibold text-lg'>Design 8</h2>
-                        <h2 className='font text-sm'>Deflection: _ mm </h2>
-                        <h2 className='font text-sm'>Thickness: _ mm</h2>
-                        <h2 className='font text-sm'>Length:  _ mm </h2>
-                        <h2 className='font text-sm'>Width:  _ mm</h2>
-                    </div>
-
-                </div>
-
-
-
-               
-
-
-            </div>
-
-
-
+          />
+          <label
+            for="link-radio"
+            class="ml-2 text-md font-medium text-gray-900 dark:text-gray-300"
+          >Diverse Results
+          </label>
         </div>
-    )
+
+        <div className="mx-auto flex flex-col items-center justify-center md:flex-col w-9/12 mt-6">
+          <div className="mx-auto w-full p-2">
+            <label
+              for="countries"
+              class="block mb-2 text-sm font-semibold text-lg text-gray-900 dark:text-white"
+            >
+              Priority 1:
+            </label>
+            <select
+              id="countries"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            >
+              <option selected>Choose a parameter</option>
+              <option value="US">Deflection</option>
+              <option value="CA">Weight</option>
+              <option value="FR">Thickness</option>
+              <option value="DE">Depth</option>
+            </select>
+          </div>
+
+          <div className="mx-auto w-full p-2">
+            <label
+              for="countries"
+              class="block mb-2 text-sm font-semibold text-lg text-gray-900 dark:text-white"
+            >
+              Priority 2:
+            </label>
+            <select
+              id="countries"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            >
+              <option selected>Choose another parameter</option>
+              <option value="US">Deflection</option>
+              <option value="CA">Weight</option>
+              <option value="FR">Thickness</option>
+              <option value="DE">Depth</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="mx-auto w-fit block bg-blue-500 hover:bg-blue-400 text-white font-bold mt-8 py-2 px-8 border-b-4 border-blue-700 hover:border-blue-500 rounded " onClick={handleClick}>
+          Sort
+        </button>
+      </div>
+
+      <div className="w-6/12 mt-1 grid md:grid-cols-1 md:gap-4 overflow-auto items-center justify-center  " style={{height:"92%"}}>
+
+        {
+            Object.keys(Images).map((key, index) => {
+                return (
+                    // console.log(key),
+                    // console.log(images[key].default),
+                   <Row ind={index} def={"__"} t={"__"} l={"__"} w={"__"} img={key} />
+                  
+                    
+                )
+            })
+        }
+
+      </div>
+    </div>
+  );
 }
