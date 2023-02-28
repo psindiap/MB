@@ -34,7 +34,7 @@ export default function Form() {
   return (
     <div className="flex w-full  justify-center items-center">
 
-      <div className="flex flex-col-reverse md:flex-row items-center justify-center register md:h-screen70">
+      <div className="flex flex-col-reverse md:flex-row items-center justify-center register md:h-screen80 overflow-auto md:overflow-hidden ">
         <div className="flex flex-col w-1/2 p-12 px-20">
           <h2 className='font-semibold text-xl mt-8'>Generate design:</h2>
           <span >Set desired Parameters-</span>
@@ -158,7 +158,7 @@ export default function Form() {
 
 
           <button class="my-8 mx-auto w-fit block bg-blue-500 hover:bg-blue-400 text-white font-bold mt-8 py-2 px-8 border-b-4 border-blue-700 hover:border-blue-500 rounded ">
-            <NavLink to='/form2'>Generate</NavLink>
+            <NavLink to='/form3'>Generate</NavLink>
           </button>
 
         </div>

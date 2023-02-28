@@ -1,6 +1,8 @@
 import './App.css';
 import Form from './components/Form';
 import Form2 from './components/Form2';
+import Form3 from './components/Form3';
+
 import {
   createBrowserRouter,
   RouterProvider,
@@ -11,20 +13,24 @@ import { ChakraProvider } from '@chakra-ui/react'
 const router = createBrowserRouter([
   {
     path: "/",
-    element:  <Form/>,
-  },{
+    element: <Form/>,
+  }, {
     path: "/form2",
-    element:  <Form2/>,
-  }
+    element: <Form2/>,
+  },
+  {
+    path: "/form3",
+    element: <Form3/>
+  },
 ]);
 
 
 function App() {
   return (
     <ChakraProvider>
-    <div className="App">
-    <RouterProvider router={router} />
-    </div>
+      <div className="App">
+        <RouterProvider router={router} />
+      </div>
     </ChakraProvider>
 
   );
